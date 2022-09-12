@@ -1,7 +1,5 @@
 package com.ms.email.controllers;
 
-import static org.springframework.beans.BeanUtils.copyProperties;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,9 +23,7 @@ public class EmailController {
 	
 	@PostMapping("/sending-email")
 	public ResponseEntity<Email> sendingEmail(@RequestBody @Valid EmailDto emailDto) {
-		Email emailModel = new Email();
-		copyProperties(emailDto, emailModel);
-		return ResponseEntity.status(HttpStatus.CREATED).body(service.sendEmail(emailModel));
+		return ResponseEntity.status(HttpStatus.CREATED).body(service.sendEmail(emailDto));
 	}
 
 }
